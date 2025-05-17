@@ -17,8 +17,8 @@ subprojects {
     compileJava.dependsOn validateStructure
 
     java {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     //build.dependsOn 'pitest'
@@ -28,19 +28,25 @@ subprojects {
     }
 
     dependencies {
-        implementation 'io.projectreactor:reactor-core'
-        implementation 'io.projectreactor.addons:reactor-extra'
+        implementation(libs.reactor.core)
+        implementation(libs.reactor.extra)
 
-        testImplementation 'io.projectreactor.tools:blockhound-junit-platform:1.0.11.RELEASE'
+        testImplementation(libs.blockhound.junit.platform)
 
-        testImplementation 'io.projectreactor:reactor-test'
-        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
-        compileOnly "org.projectlombok:lombok:${lombokVersion}"
-        annotationProcessor  "org.projectlombok:lombok:${lombokVersion}"
-        testCompileOnly  "org.projectlombok:lombok:${lombokVersion}"
-        testAnnotationProcessor  "org.projectlombok:lombok:${lombokVersion}"
-        implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+        testImplementation(libs.reactor.test)
+        testRuntimeOnly(libs.junit.platform.launcher)
+        testImplementation(libs.spring.boot.starter.test)
+        compileOnly(libs.lombok)
+        annotationProcessor(libs.lombok)
+        testCompileOnly(libs.lombok)
+        testAnnotationProcessor(libs.lombok)
+        testImplementation(libs.spring.boot.dependencies)
+    }
+
+    dependencyManagement {
+        dependencies {
+            dependency "org.springframework:spring-core:6.2.6"
+        }
     }
 
     tasks.withType(Test).configureEach {
@@ -84,7 +90,7 @@ subprojects {
 }
 
 jacoco {
-    toolVersion = "${jacocoVersion}"
+    toolVersion = (libs.versions.jacoco)
     reportsDirectory.set(layout.buildDirectory.dir("reports"))
 }
 

@@ -1,0 +1,36 @@
+[versions]
+cleanArchitecture = "3.22.4"
+springBoot = "3.4.5"
+springDependencies = "1.1.7"
+sonar = "6.1.0.5360"
+jacoco = "0.8.13"
+pitest = "1.15.0"
+lombok = "1.18.38"
+reactor = "3.7.5"
+reactorExtra = "3.5.2"
+blockhound = "1.0.11.RELEASE"
+junitPlatform = "1.10.0"
+archunit = "1.4.0"
+jackson = "2.15.2"
+
+[libraries]
+reactor-core = { module = "io.projectreactor:reactor-core", version.ref = "reactor" }
+reactor-extra = { module = "io.projectreactor.addons:reactor-extra", version.ref = "reactorExtra" }
+blockhound-junit-platform = { module = "io.projectreactor.tools:blockhound-junit-platform", version.ref = "blockhound" }
+reactor-test = { module = "io.projectreactor:reactor-test", version.ref = "reactor" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junitPlatform" }
+spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springBoot" }
+spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "springBoot" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBoot" }
+archunit = { module = "com.tngtech.archunit:archunit", version.ref = "archunit" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot" }
+
+[plugins]
+cleanArchitecture = { id = "co.com.bancolombia.cleanArchitecture", version.ref = "cleanArchitecture" }
+springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }
+spring-dependencies = { id = "io.spring.dependency-management",     version.ref = "springDependencies" }
+pitest = { id = "info.solidsoft.pitest", version.ref = "pitest" }
+sonarqube = { id = "org.sonarqube", version.ref = "sonar" }
+jacoco = { id = "jacoco" }
